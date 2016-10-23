@@ -127,33 +127,10 @@ names(all)[69:ncol(all)]<-c(label_total_acc_x,label_total_acc_y,label_total_acc_
 ##5.From the data set in step 4. creates a second, independent tidy data set##
 ##with the average of each varaible for each activity and each subject##
 
-## each activity ## 
 
 newindi<-grep("mean",names(all))
 
-all_A1<-all[all$Activity=="WALKING",newindi]
-all_A2<-all[all$Activity=="WALKING_UPSTAIRS",newindi]
-all_A3<-all[all$Activity=="WALKING_DOWNSTAIR",newindi]
-all_A4<-all[all$Activity=="SITTING",newindi]
-all_A5<-all[all$Activity=="STANDING",newindi]
-all_A6<-all[all$Activity=="LAYING",newindi]
+newindi<-c(1,newindi,68)
 
-##create indepedent tidy data set ## 
-
-
-
-write.table(all_A1,"Activity_WALKING.txt",row.name=FALSE)
-write.table(all_A2,"Activity_WALKING_UPSTAIRS.txt",row.name=FALSE)
-write.table(all_A3,"Activity_WALKING_DOWNSTAIR.txt",row.name=FALSE)
-write.table(all_A4,"Activity_SITTING.txt",row.name=FALSE)
-write.table(all_A5,"Activity_STANDING.txt",row.name=FALSE)
-write.table(all_A6,"Activity_LAYING.txt",row.name=FALSE)
-
-## each subject ## 
-
-for (i in 1:30){
-write.table(all[all$Subject==i,newindi],paste("Subject",i,".txt",collapse=""),row.name=FALSE)
-}
-
-
-
+final<-all[,newindi]
+write.table(final,"finaltidydataset.txt",row.name=FALSE)
